@@ -1,0 +1,78 @@
+
+# =========================
+# Python et environnements
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# =========================
+# Secrets et configuration locale
+# =========================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# =========================
+# MLflow : ne pas envoyer les expériences
+# =========================
+mlruns/
+mlartifacts/
+mlflow.db
+mlflow.db-shm
+mlflow.db-wal
+
+# =========================
+# Datasets et données brutes
+# =========================
+data/
+datasets/
+*.csv
+*.parquet
+*.xlsx
+
+# Fichiers CSV à exclure explicitement
+crop_yield.csv
+pesticides.csv
+rainfall.csv
+temp.csv
+yield.csv
+yield_df.csv
+
+# =========================
+# Sorties locales et graphiques
+# =========================
+outputs/*
+!outputs/.gitkeep
+
+# =========================
+# Modèles entraînés
+# =========================
+# Exclure les autres modèles et checkpoints
+models/*
+!models/model_xgb.pkl
+!models/.gitkeep
+
+# =========================
+# Logs et fichiers temporaires
+# =========================
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
