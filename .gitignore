@@ -1,4 +1,3 @@
-
 # =========================
 # Python et environnements
 # =========================
@@ -54,14 +53,15 @@ yield_df.csv
 # =========================
 outputs/*
 !outputs/.gitkeep
+!outputs/dataset_final.csv
 
 # =========================
 # Modèles entraînés
 # =========================
 # Exclure les autres modèles et checkpoints
-models/*
-!models/model_xgb.pkl
-!models/.gitkeep
+model/*
+!model/model_xgb.pkl
+!model/Models.ipynb
 
 # =========================
 # Logs et fichiers temporaires

@@ -12,7 +12,7 @@ import joblib
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-MODEL_PATH = Path(r"C:\Users\amela\model\model_xgb.pkl")
+MODEL_PATH = BASE_DIR / "model" / "model_xgb.pkl"
 DATASET_PATH = BASE_DIR / "outputs" / "dataset_final.csv"
 
 
