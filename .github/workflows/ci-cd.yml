@@ -64,20 +64,16 @@ jobs:
       - name: Recuperer le code
         uses: actions/checkout@v4
 
-
-      # ----------------------------------------------------------
-      # Docker Buildx
-      # ----------------------------------------------------------
       - name: Configurer Docker Buildx
         uses: docker/setup-buildx-action@v3
 
 
       # ----------------------------------------------------------
-      # Vérification des secrets
+      # Vérification username
       # ----------------------------------------------------------
-      - name: Verifier les secrets Docker Hub
+      - name: Verifier configuration Docker Hub
         env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
           test -n "$DOCKERHUB_USERNAME" || \
@@ -86,7 +82,8 @@ jobs:
           test -n "$DOCKERHUB_TOKEN" || \
             (echo "DOCKERHUB_TOKEN absent ou vide" && exit 1)
 
-          echo "Les secrets Docker Hub sont presents."
+          echo "Username Docker Hub present."
+          echo "Token Docker Hub present."
 
 
       # ----------------------------------------------------------
@@ -94,11 +91,11 @@ jobs:
       # ----------------------------------------------------------
       - name: Login Docker Hub
         env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
           printf '%s' "$DOCKERHUB_TOKEN" | \
-            docker login docker.io \
+            docker login \
             --username "$DOCKERHUB_USERNAME" \
             --password-stdin
 
@@ -114,5 +111,5 @@ jobs:
           push: true
           platforms: linux/amd64
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/crop-yield-api:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/crop-yield-api:${{ github.sha }}
+            ${{ vars.DOCKERHUB_USERNAME }}/crop-yield-api:latest
+            ${{ vars.DOCKERHUB_USERNAME }}/crop-yield-api:${{ github.sha }}
